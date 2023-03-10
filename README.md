@@ -29,7 +29,7 @@ cushy-serial是一个轻量级的Serial框架，初衷是希望使Serial编程�
 
 # 快速上手
 ```bash
-pip install cushy-socket --upgrade 
+pip install cushy-serial --upgrade 
 ```
 
 - 下面是一个简单的serial程序，当python客户端接收到来自串口的信息时会自动回调
@@ -58,6 +58,7 @@ def handle_serial_message(msg: bytes):
 # 待办
 
 - [ ] 提供bytes包解析功能，减少在包解析上所花费的工作
+- [ ] 提供相关持久化解决方案
 - [ ] 提供数据流监控，提高数据稳定性
 - [ ] 提供更加细力度的数据包调控，降低丢包率
 - [ ] 提供串口定时任务调度
