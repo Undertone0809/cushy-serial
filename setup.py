@@ -20,7 +20,7 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setuptools.setup(
     name="cushy-serial",
-    version="1.0.0",
+    version="1.1.1",
     author="Zeeland",
     author_email="zeeland@foxmail.com",
     description="A lightweight serial library",

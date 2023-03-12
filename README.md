@@ -48,20 +48,36 @@ def handle_serial_message(msg: bytes):
 ```
 
 > 需要说明的是，CushySerial兼容了Serial中所有的功能，因此，你可以在CushySerial中使用Serial的所有功能。
-
-  
+ 
 - 运行结果如下
 
 <img src="https://zeeland-bucket.oss-cn-beijing.aliyuncs.com/images/20230310173226.png"/>
 
 
+- 如果你想要执行定时任务，`CushySerial`也提供了相关的解决方案，你可以方便的轮询发送指令，并获取来自串口的信息，示例如下：
+
+```python
+from cushy_serial import CushySerial, enable_log
+
+enable_log()
+serial = CushySerial("COM1", 9600)
+instruction = bytes([0x01, 0x06, 0x00, 0x7F, 0x00, 0x01, 0x79, 0xD2])
+
+# msg为你要轮询发送的指令，interval为轮询的时间间隔，times为执行次数，可不填写
+@serial.polling_task(msg=instruction, interval=0.5, times=5)
+def handle_rec_msg(rec_msg):
+    print(f"[serial] rec polling message: {rec_msg}")
+```
+
+
 # 待办
 
+- [ ] 提供polling_task的函数回调版本
 - [ ] 提供bytes包解析功能，减少在包解析上所花费的工作
 - [ ] 提供相关持久化解决方案
 - [ ] 提供数据流监控，提高数据稳定性
 - [ ] 提供更加细力度的数据包调控，降低丢包率
-- [ ] 提供串口定时任务调度
+- [x] 提供串口定时任务调度
 - [ ] 完善单元测试
 
 # 贡献
